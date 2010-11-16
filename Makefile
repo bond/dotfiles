@@ -1,4 +1,4 @@
-LN_FLAGS = -si
+LN_FLAGS = -sf
 
 symlinks = .zshrc .screenrc
 
@@ -10,6 +10,6 @@ $(symlinks):
 	@ln $(LN_FLAGS) $(PWD)/dot$@ ~/$@
 
 install: $(symlinks)
-	@echo -e \\n
-	@echo symlinks should be installed, for more information see http://github.com/bond/dotfiles
 	@echo
+	@echo symlinks should be installed: [$^]
+	@echo -e \\nFor more information see: http://github.com/bond/dotfiles

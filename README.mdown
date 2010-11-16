@@ -6,4 +6,4 @@ Run the following commands:
     make install
 
 
-By default you will be asked about which files to overwrite.
+By default files will be overwritten!

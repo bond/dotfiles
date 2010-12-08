@@ -1,6 +1,6 @@
 LN_FLAGS = -sf
 
-symlinks = .zshrc .screenrc .emacs .emacs.d
+symlinks = .zshrc .screenrc .emacs .emacs.d .gitconfig
 
 all: install
 

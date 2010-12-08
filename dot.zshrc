@@ -21,6 +21,8 @@ export RPS1="[%l@%m]"
 export LANG='en_US.UTF-8'
 export EDITOR="vim"
 
+export PATH="$PATH:/var/lib/gems/1.9.1/bin/"
+
 # Aliases
 alias ll='ls -lA'
 

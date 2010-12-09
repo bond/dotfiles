@@ -19,7 +19,6 @@
 
 ; load modes for editing dotfile repo
 ;   zsh
-(setq auto-mode-alist (cons '(".rhtml$" . html-mode) auto-mode-alist))
 (autoload 'shell-script-node "shell-script-mode" "Major mode for editing shellscript" t)
 (setq auto-mode-alist (cons '("dot.zshrc$" . shell-script-mode) auto-mode-alist))
 ;   emacs

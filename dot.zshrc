@@ -25,6 +25,7 @@ export PATH="$PATH:/var/lib/gems/1.9.1/bin/"
 
 # Aliases
 alias ll='ls -lA'
+alias emacs='emacs -nw'
 
 # Terminal specific
 case $TERM in

@@ -16,3 +16,12 @@
 (global-set-key "\C-cc" 'mode-compile)
 (autoload 'mode-compile-kill "mode-compile" "Kill a compile by compile-mode" t)
 (global-set-key "\C-ck" 'mode-compile-kill)
+
+; load modes for editing dotfile repo
+;   zsh
+(setq auto-mode-alist (cons '(".rhtml$" . html-mode) auto-mode-alist))
+(autoload 'shell-script-node "shell-script-mode" "Major mode for editing shellscript" t)
+(setq auto-mode-alist (cons '("dot.zshrc$" . shell-script-mode) auto-mode-alist))
+;   emacs
+(autoload 'emacs-lisp-mode "emacs-lisp-mode" "Major mode for editing emacs/lisp" t)
+(setq auto-mode-alist (cons '("dot.emacs$" . emacs-lisp-mode) auto-mode-alist))

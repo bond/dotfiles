@@ -7,9 +7,9 @@
 (transient-mark-mode t)
 
 ; load ruby mode
-(autoload 'ruby-mode "ruby-mode" "Major mode for editing ruby" t)
-(setq auto-mode-alist (cons '(".rb$" . ruby-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '(".rhtml$" . html-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '(".rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '(".rhtml$" . html-mode))
+
 
 ; load compile mode, for smarter compiling (ie, for ruby)
 (autoload 'mode-compile "mode-compile" "Copile based on major mode" t)
@@ -19,8 +19,9 @@
 
 ; load modes for editing dotfile repo
 ;   zsh
-(autoload 'shell-script-node "shell-script-mode" "Major mode for editing shellscript" t)
-(setq auto-mode-alist (cons '("dot.zshrc$" . shell-script-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("dot.zshrc$" . shell-script-mode))
 ;   emacs
-(autoload 'emacs-lisp-mode "emacs-lisp-mode" "Major mode for editing emacs/lisp" t)
-(setq auto-mode-alist (cons '("dot.emacs$" . emacs-lisp-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("dot.emacs$" . emacs-lisp-mode))
+
+; load support for org-mode
+(add-to-list 'auto-mode-alist '(".org$" . org-mode))

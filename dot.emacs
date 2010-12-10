@@ -10,8 +10,9 @@
 (global-set-key (kbd "M-1") 'kill-whole-line)
 
 ; load ruby mode
-(add-to-list 'auto-mode-alist '(".rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '(".rhtml$" . html-mode))
+(autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rhtml$" . ruby-mode))
 
 
 ; load compile mode, for smarter compiling (ie, for ruby)

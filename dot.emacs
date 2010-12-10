@@ -6,6 +6,9 @@
 ; show region currently marked
 (transient-mark-mode t)
 
+; global shortcuts
+(global-set-key (kbd "M-1") 'kill-whole-line)
+
 ; load ruby mode
 (add-to-list 'auto-mode-alist '(".rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '(".rhtml$" . html-mode))

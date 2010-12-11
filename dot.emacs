@@ -6,6 +6,9 @@
 ; show region currently marked
 (transient-mark-mode t)
 
+; turn on colorization
+(global-font-lock-mode t)
+
 ; global shortcuts
 (global-set-key (kbd "M-1") 'kill-whole-line)
 
@@ -14,6 +17,9 @@
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rhtml$" . ruby-mode))
 
+; load Lua mode
+(autoload 'lua-mode "lua-mode" "Lua editing mode" t)
+(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 
 ; load compile mode, for smarter compiling (ie, for ruby)
 (autoload 'mode-compile "mode-compile" "Copile based on major mode" t)

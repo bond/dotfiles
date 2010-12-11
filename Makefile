@@ -1,7 +1,7 @@
 LN_FLAGS = -sf
 
-symlinks = .zshrc .screenrc
-
+symlinks = .zshrc .screenrc .emacs .gitconfig .Xdefaults .xsession
+symdirs = .emacs.d
 all: install
 
 
@@ -9,7 +9,16 @@ all: install
 $(symlinks):
 	@ln $(LN_FLAGS) $(PWD)/dot$@ ~/$@
 
-install: $(symlinks)
+$(symdirs):
+	@rm -f ~/$@
+	@ln $(LN_FLAGS) $(PWD)/dot$@/ ~/$@
+
+# config for awesomewm
+awesome:
+	@rm -f ~/.config/$@
+	@ln $(LN_FLAGS) $(PWD)/dot.config/$@ ~/.config/$@
+
+install: $(symlinks) $(symdirs) awesome
 	@echo
-	@echo symlinks should be installed: [$^]
+	@echo symlinks installed: [$^]
 	@echo -e \\nFor more information see: http://github.com/bond/dotfiles

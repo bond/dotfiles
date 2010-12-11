@@ -10,6 +10,7 @@ $(symlinks):
 	@ln $(LN_FLAGS) $(PWD)/dot$@ ~/$@
 
 $(symdirs):
+	rm -f ~/$@
 	ln $(LN_FLAGS) $(PWD)/dot$@/ ~/$@
 
 install: $(symlinks) $(symdirs)

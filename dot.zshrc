@@ -22,6 +22,7 @@ export LANG='en_US.UTF-8'
 export EDITOR="vim"
 
 # Aliases
+alias ls='ls --color=always'
 alias ll='ls -lA'
 
 # Terminal specific

@@ -10,10 +10,15 @@ $(symlinks):
 	@ln $(LN_FLAGS) $(PWD)/dot$@ ~/$@
 
 $(symdirs):
-	rm -f ~/$@
-	ln $(LN_FLAGS) $(PWD)/dot$@/ ~/$@
+	@rm -f ~/$@
+	@ln $(LN_FLAGS) $(PWD)/dot$@/ ~/$@
 
-install: $(symlinks) $(symdirs)
+# config for awesomewm
+awesome:
+	@rm -f ~/.config/$@
+	@ln $(LN_FLAGS) $(PWD)/dot.config/$@ ~/.config/$@
+
+install: $(symlinks) $(symdirs) awesome
 	@echo
-	@echo symlinks should be installed: [$^]
+	@echo symlinks installed: [$^]
 	@echo -e \\nFor more information see: http://github.com/bond/dotfiles

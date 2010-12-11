@@ -1,7 +1,8 @@
 (add-to-list 'load-path "~/.emacs.d/modes")
 
-; turn off menubar
-(menu-bar-mode 0)
+; turn off menubar, when not using X11
+(unless (window-system)
+    (menu-bar-mode 0))
 
 ; show region currently marked
 (transient-mark-mode t)

@@ -19,5 +19,5 @@ Rxvt*color15:     #ffffff
 
 Rxvt*scrollBar:   False
 Rxvt*font:	  xft:Terminus
-Rxvt*shading:	  08
+Rxvt*shading:	  15
 Rxvt*transparent: True

@@ -14,6 +14,10 @@
 ; global shortcuts
 (global-set-key (kbd "M-1") 'kill-whole-line)
 
+; load PHP mode
+(autoload 'php-mode "php-mode" "Major mode for editing PHP" t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+
 ; load ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))

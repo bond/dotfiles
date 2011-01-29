@@ -15,6 +15,7 @@ $(symdirs):
 
 # config for awesomewm
 awesome:
+	@mkdir -p ~/.config
 	@rm -f ~/.config/$@
 	@ln $(LN_FLAGS) $(PWD)/dot.config/$@ ~/.config/$@
 

@@ -12,6 +12,7 @@
 
 ; global shortcuts
 (global-set-key (kbd "M-1") 'kill-whole-line)
+(global-set-key (kbd "C-d") 'delete-region)
 
 ; load ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)

@@ -10,12 +10,17 @@ require("naughty")
 -- Load Debian menu entries
 require("debian.menu")
 
+-- Load Status functions
+-- require("/status.lua")
+
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/theme.lua")
+
 
 terminal = "urxvt"
 editor = "emacs"
+browser = "google-chrome"
 
 editor_cmd = terminal .. " -e " .. editor
 
@@ -46,8 +51,6 @@ layouts =
 tags = {}
 tagnames = { "research", "work1", "work2", "network", "social", "media" }
 for s = 1, screen.count() do
-    -- Each screen has its own tag table.
-    -- tags[s] = awful.tag({ 1, 2, 3, 4, 5, 6, 7, 8, 9 }, s, layouts[1])
    tags[s] = awful.tag(tagnames, s, layouts[1])
 end
 -- }}}
@@ -61,7 +64,8 @@ myawesomemenu = {
    { "quit", awesome.quit }
 }
 
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
+mymainmenu = awful.menu({ items = { { "emacs", "emacs" },
+			            { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
                                     { "open terminal", terminal }
                                   }
@@ -77,12 +81,16 @@ mytextclock = awful.widget.textclock({ align = "right" })
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
-
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
 mylayoutbox = {}
 mytaglist = {}
+
+-- Create Status
+mystatus = widget({ type = "textbox", align = "right" })
+-- mystatus.text = netInfo("wlan0", 5)
+
 mytaglist.buttons = awful.util.table.join(
                     awful.button({ }, 1, awful.tag.viewonly),
                     awful.button({ modkey }, 1, awful.client.movetotag),
@@ -149,7 +157,8 @@ for s = 1, screen.count() do
         mylayoutbox[s],
         mytextclock,
         s == 1 and mysystray or nil,
-        mytasklist[s],
+        -- mytasklist[s],
+	mystatus,
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
@@ -218,7 +227,12 @@ globalkeys = awful.util.table.join(
                   mypromptbox[mouse.screen].widget,
                   awful.util.eval, nil,
                   awful.util.getdir("cache") .. "/history_eval")
-              end)
+              end),
+
+    -- Lock screen
+    awful.key({ modkey,           }, "<",      function () awful.util.spawn("xlock -mode matrix") end),
+    -- Spawn browser
+    awful.key({ modkey,           }, "b",      function () awful.util.spawn(browser) end)
 )
 
 clientkeys = awful.util.table.join(

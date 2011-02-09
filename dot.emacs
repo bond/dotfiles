@@ -1,8 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d/modes")
 
 ; turn off menubar, when not using X11
-(unless (window-system)
-    (menu-bar-mode 0))
+(or (not (boundp 'window-system))
+    (window-system nil)
+      (menu-bar-mode 0))
 
 ; show region currently marked
 (transient-mark-mode t)
@@ -12,6 +13,11 @@
 
 ; global shortcuts
 (global-set-key (kbd "M-1") 'kill-whole-line)
+(global-set-key (kbd "C-d") 'delete-region)
+
+; load PHP mode
+(autoload 'php-mode "php-mode" "Major mode for editing PHP" t)
+(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
 ; load ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)
@@ -36,3 +42,5 @@
 
 ; load support for org-mode
 (add-to-list 'auto-mode-alist '(".org$" . org-mode))
+
+(put 'upcase-region 'disabled nil)

@@ -24,6 +24,7 @@ export EDITOR="vim"
 export PATH="$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin/"
 
 # Aliases
+alias ls='ls --color=auto'
 alias ll='ls -lA'
 alias emacs='emacs -nw'
 

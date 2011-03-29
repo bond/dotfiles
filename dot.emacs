@@ -24,6 +24,10 @@
 ; load PHP mode
 (autoload 'php-mode "php-mode" "Major mode for editing PHP" t)
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+; turn off outline in php-mode
+(add-hook 'php-mode-hook
+	  '(lambda ()
+	     (outline-minor-mode 0)))
 
 ; load ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)

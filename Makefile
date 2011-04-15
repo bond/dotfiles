@@ -19,7 +19,12 @@ awesome:
 	@rm -f ~/.config/$@
 	@ln $(LN_FLAGS) $(PWD)/dot.config/$@ ~/.config/$@
 
-install: $(symlinks) $(symdirs) awesome
+install: $(symlinks) $(symdirs)
+	@echo
+	@echo symlinks installed: [$^]
+	@echo -e \\nFor more information see: http://github.com/bond/dotfiles
+
+installx: $(symlinks) $(symdirs) awesome
 	@echo
 	@echo symlinks installed: [$^]
 	@echo -e \\nFor more information see: http://github.com/bond/dotfiles

@@ -17,7 +17,6 @@ bindkey -e
 # Env
 export PS1="%n %B%~%b> "
 export RPS1="[%l@%m]"
-
 export LANG='en_US.UTF-8'
 export EDITOR="vim"
 
@@ -32,5 +31,12 @@ alias emacs='emacs -nw'
 case $TERM in
   xterm*)
     precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+    ;;
+esac
+
+# OS Specific overrides
+case $(uname -s) in
+  Linux)
+    alias ls='ls --color=auto'
     ;;
 esac

@@ -1,0 +1,10 @@
+set mbox="!"
+
+set realname="Daniel Bond"
+set signature="~/.signature"
+
+set mail_check=90
+set timeout=10
+
+# local config goes here
+source ~/.muttrc.local

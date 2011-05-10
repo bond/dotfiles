@@ -18,7 +18,7 @@ bindkey -e
 export PS1="%n %B%~%b> "
 export RPS1="[%l@%m]"
 export LANG='en_US.UTF-8'
-export EDITOR="vim"
+export EDITOR="emacs"
 
 export PATH="$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin/"
 
@@ -39,3 +39,6 @@ case $(uname -s) in
     alias ls='ls --color=auto'
     ;;
 esac
+
+# Local overrides
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local

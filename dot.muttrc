@@ -1,3 +1,4 @@
+set charset=utf8
 set mbox="!"
 
 set realname="Daniel Bond"
@@ -5,6 +6,19 @@ set signature="~/.signature"
 
 set mail_check=90
 set timeout=10
+
+set header_cache =~/.mutt/cache/headers
+
+set quit=ask-yes
+unset beep
+
+set markers=no # don't put '+' at the beginning of wrapped lines
+
+# don't ask every time moving messages
+unset confirmappend
+
+# autoview files (see ~/.mailcap)
+auto_view text/html
 
 # local config goes here
 source ~/.muttrc.local

@@ -28,6 +28,9 @@
 (add-hook 'php-mode-hook
 	  '(lambda ()
 	     (outline-minor-mode 0)))
+; setup for drupal coding standards
+(require 'drupal-mode)
+(add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\)$" . drupal-mode))
 
 ; load ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)

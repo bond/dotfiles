@@ -10,6 +10,8 @@ set timeout=10
 set header_cache =~/.mutt/cache/headers
 
 set quit=ask-yes
+set delete=yes
+
 unset beep
 
 set markers=no # don't put '+' at the beginning of wrapped lines

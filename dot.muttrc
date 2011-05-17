@@ -1,12 +1,19 @@
-set charset=utf8
-set mbox="!"
+# terminal settings
+set xterm_set_titles
+set xterm_title="Mutt: %f [Msg:%m New:%n %l]"
 
+
+# personal settings
 set realname="Daniel Bond"
 set signature="~/.signature"
 
+
+# general settings
+set charset=utf8
+set mbox="!" # disable
+
 set mail_check=90
 set timeout=10
-
 set header_cache =~/.mutt/cache/headers
 
 set quit=ask-yes
@@ -22,5 +29,5 @@ unset confirmappend
 # autoview files (see ~/.mailcap)
 auto_view text/html
 
-# local config goes here
+# local config goes here (not managed by Git)
 source ~/.muttrc.local

@@ -29,5 +29,10 @@ unset confirmappend
 # autoview files (see ~/.mailcap)
 auto_view text/html
 
+# Make important headers stand out
+color header yellow black subject
+color header green black from
+color header green black to
+
 # local config goes here (not managed by Git)
 source ~/.muttrc.local

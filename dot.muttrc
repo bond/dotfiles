@@ -14,6 +14,7 @@ set index_format="%4C %Z %{%b %d} %?M?(#%03M) &?%-15.15L (%4l) %s"
 # general settings
 set charset=utf8
 set mbox="!" # disable
+folder-hook . push "<collapse-all>"
 
 set mail_check=90
 set timeout=10

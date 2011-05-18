@@ -7,6 +7,9 @@ set xterm_title="Mutt: %f [Msg:%m New:%n %l]"
 set realname="Daniel Bond"
 set signature="~/.signature"
 
+# view settings
+# add hidden messages in collapsed threads
+set index_format="%4C %Z %{%b %d} %?M?(#%03M) &?%-15.15L (%4l) %s"
 
 # general settings
 set charset=utf8

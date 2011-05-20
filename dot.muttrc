@@ -9,7 +9,7 @@ set signature="~/.signature"
 
 # view settings
 # add hidden messages in collapsed threads
-set index_format="%4C %Z %{%b %d} %?M?(#%03M) &?%-15.15L (%4l) %s"
+set index_format="%4C %Z %{%b %d} %?M?(#%03M) &?%-15.15L (%4c) %s"
 
 # general settings
 set charset=utf8

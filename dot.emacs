@@ -1,4 +1,7 @@
-(add-to-list 'load-path "~/.emacs.d/modes")
+; Variables
+(defvar emacshome "~/.emacs.d")
+
+(add-to-list 'load-path (concat emacshome "/modes"))
 
 ; turn off menubar, when not using X11
 (unless (and (boundp 'window-system) window-system)
@@ -14,11 +17,38 @@
 (global-set-key (kbd "M-1") 'kill-whole-line)
 (global-set-key (kbd "C-d") 'delete-region)
 
-; save backups in temporary directory
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+; save backups in temporary directory in .emacs.d
+
+(let ((tmpd (concat emacshome "/tmp"))
+      (backupd (concat emacshome "/backup")))
+  (if (file-accessible-directory-p emacshome)
+      (progn
+	(unless (file-accessible-directory-p backupd)(make-directory backupd))
+	(setq backup-directory-alist
+	      `((".*" . ,backupd)))
+
+	(unless (file-accessible-directory-p tmpd)(make-directory tmpd))
+	(setq auto-save-file-name-transforms
+	      `((".*" ,tmpd t)))
+	)
+    )
+  )
+
+; Convenience function to chmod current buffer
+(defun chmod-buffer (mode)
+  "Function that sets the chmod of the current buffer (file)"
+  (interactive "sEnter file mode: ")
+  (let (file))
+    (progn
+      (setq file (buffer-file-name))
+      (unless file (error "Buffer must be a valid file"))
+      (set-file-modes file (string-to-number mode 8))))
+
+; Bookmark settings
+(setq
+ bookmark-default-file "~/.emacs.d/bookmarks" ;; Keep my ~/ clean
+ bookmark-save-flag 1                         ;; Autosave changes
+)
 
 ; load PHP mode
 (autoload 'php-mode "php-mode" "Major mode for editing PHP" t)

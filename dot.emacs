@@ -3,6 +3,10 @@
 
 (add-to-list 'load-path (concat emacshome "/modes"))
 
+; disable stuff
+(setq inhibit-splash-screen t) ; the splash-screen splits x11 mode
+(put 'upcase-region 'disabled nil) ; I never mean to use this function anyway
+
 ; turn off menubar, when not using X11
 (unless (and (boundp 'window-system) window-system)
   (menu-bar-mode 0))
@@ -16,6 +20,7 @@
 ; global shortcuts
 (global-set-key (kbd "M-1") 'kill-whole-line)
 (global-set-key (kbd "C-d") 'delete-region)
+(global-set-key (kbd "M-2") 'goto-line)
 
 ; save backups in temporary directory in .emacs.d
 
@@ -84,5 +89,3 @@
 
 ; load support for org-mode
 (add-to-list 'auto-mode-alist '(".org$" . org-mode))
-
-(put 'upcase-region 'disabled nil)

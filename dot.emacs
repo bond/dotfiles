@@ -2,20 +2,34 @@
 (defvar emacshome "~/.emacs.d")
 
 (add-to-list 'load-path (concat emacshome "/modes"))
+(add-to-list 'load-path (concat emacshome "/themes"))
+
 
 ; disable stuff
 (setq inhibit-splash-screen t) ; the splash-screen splits x11 mode
+(setq inhibit-startup-message t) ; welcome screen
 (put 'upcase-region 'disabled nil) ; I never mean to use this function anyway
 
 ; turn off menubar, when not using X11
 (unless (and (boundp 'window-system) window-system)
   (menu-bar-mode 0))
 
-; show region currently marked
-(transient-mark-mode t)
 
-; turn on colorization
-(global-font-lock-mode t)
+; Visual settings
+(set-face-attribute 'default nil :font "Ubuntu Mono 13") ; default font
+(transient-mark-mode t) ;show region currently marked
+
+(global-font-lock-mode t) ; turn on colors
+(require 'color-theme) ; set color theme
+(require 'color-theme-twilight)
+(color-theme-twilight)
+
+
+; tab configuration
+(setq c-basic-offset 2)
+(setq indent-tabs-mode nil)
+(setq tab-width 2)
+
 
 ; global shortcuts
 (global-set-key (kbd "M-1") 'kill-whole-line)
@@ -49,11 +63,13 @@
       (unless file (error "Buffer must be a valid file"))
       (set-file-modes file (string-to-number mode 8))))
 
+
 ; Bookmark settings
 (setq
  bookmark-default-file "~/.emacs.d/bookmarks" ;; Keep my ~/ clean
  bookmark-save-flag 1                         ;; Autosave changes
 )
+
 
 ; load PHP mode
 (autoload 'php-mode "php-mode" "Major mode for editing PHP" t)

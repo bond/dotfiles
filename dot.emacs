@@ -1,9 +1,11 @@
 ; Variables
 (defvar emacshome "~/.emacs.d")
 
+; init
 (add-to-list 'load-path (concat emacshome "/modes"))
 (add-to-list 'load-path (concat emacshome "/themes"))
-
+(add-to-list 'load-path (concat emacshome "/extensions"))
+(load "functions")
 
 ;#########################################
 ;##
@@ -16,12 +18,15 @@
 (setq inhibit-startup-message t) ; welcome screen
 (put 'upcase-region 'disabled nil) ; I never mean to use this function anyway
 
-; turn off menubar, when not using X11
-(unless (and (boundp 'window-system) window-system)
-  (menu-bar-mode 0))
+; Perform setup for x11 and console
+(if (x11mode)
+    (progn ; x11mode
+      (set-face-attribute 'default nil :font "Ubuntu Mono 13")
+      (setq x-select-enable-clipboard t) ; as above
+      (setq interprogram-paste-function 'x-cut-buffer-or-selection-value))
+  (menu-bar-mode 0)); not x11mode
 
 ; Visual settings
-(set-face-attribute 'default nil :font "Ubuntu Mono 13") ; default font
 (transient-mark-mode t) ;show region currently marked
 
 (global-font-lock-mode t) ; turn on colors
@@ -35,6 +40,7 @@
 (setq indent-tabs-mode nil)
 (setq tab-width 2)
 
+(cua-mode t); enable c-S-x, c-S-v, c-S-c for copy/paste
 
 ; global shortcuts
 (global-set-key (kbd "M-1") 'kill-whole-line)

@@ -1,3 +1,4 @@
 *~
-bookmarks
-tmp
+dot.emacs.d/bookmarks
+dot.emacs.d/tmp
+dot.emacs.d/tramp

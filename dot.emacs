@@ -5,6 +5,12 @@
 (add-to-list 'load-path (concat emacshome "/themes"))
 
 
+;#########################################
+;##
+;## LOOK AND FEEL
+;##
+;#########################################
+
 ; disable stuff
 (setq inhibit-splash-screen t) ; the splash-screen splits x11 mode
 (setq inhibit-startup-message t) ; welcome screen
@@ -13,7 +19,6 @@
 ; turn off menubar, when not using X11
 (unless (and (boundp 'window-system) window-system)
   (menu-bar-mode 0))
-
 
 ; Visual settings
 (set-face-attribute 'default nil :font "Ubuntu Mono 13") ; default font
@@ -35,6 +40,16 @@
 (global-set-key (kbd "M-1") 'kill-whole-line)
 (global-set-key (kbd "C-d") 'delete-region)
 (global-set-key (kbd "M-2") 'goto-line)
+
+
+;#########################################
+;##
+;## UNDER THE HOOD
+;##
+;#########################################
+
+; remote editing
+(setq tramp-default-method "ssh")
 
 ; save backups in temporary directory in .emacs.d
 
@@ -70,6 +85,12 @@
  bookmark-save-flag 1                         ;; Autosave changes
 )
 
+
+;#########################################
+;##
+;## MODES AND SETTINGS
+;##
+;#########################################
 
 ; load PHP mode
 (autoload 'php-mode "php-mode" "Major mode for editing PHP" t)

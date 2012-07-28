@@ -38,7 +38,11 @@ case $(uname -s) in
   Linux)
     alias ls='ls --color=auto'
     ;;
+  Darwin)
+    export LANG=en_GB.UTF-8
+    export LC_ALL=$LANG
 esac
 
 # Local overrides
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

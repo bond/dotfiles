@@ -19,10 +19,21 @@
 (setq vc-follow-symlinks t) ; Don't ask me about symlinks in version controlled files
 (put 'upcase-region 'disabled nil) ; I never mean to use this function anyway
 
+; I allways close emacs when I don't want it
+(defun ask-before-closing ()
+  "Close if user answers y"
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to exit? "))
+      (if (< emacs-major-version 22)
+	  (save-buffers-kill-terminal)
+	(save-buffers-kill-emacs))
+    (message "Cancelled exit")))
+
 ; Perform setup for x11 and console
 (if (x11mode)
     (progn ; x11mode
-      (set-face-attribute 'default nil :font "Ubuntu Mono 13")
+      (global-set-key (kbd "C-x C-c") 'ask-before-closing)
+      (set-face-attribute 'default nil :font "Ubuntu Mono 15")
       (setq x-select-enable-clipboard t) ; as above
       (setq interprogram-paste-function 'x-cut-buffer-or-selection-value))
   (menu-bar-mode 0)); not x11mode
@@ -50,7 +61,6 @@
 ;(require 'color-theme-twilight)
 ;(color-theme-twilight)
 
-
 ; tab configuration
 (setq c-basic-offset 2)
 (setq indent-tabs-mode nil)
@@ -63,6 +73,8 @@
 (global-set-key (kbd "C-d") 'delete-region)
 (global-set-key (kbd "M-2") 'goto-line)
 
+; enable disabled-stuff
+(put 'erase-buffer 'disabled nil)
 
 ;#########################################
 ;##

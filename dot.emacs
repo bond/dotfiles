@@ -44,6 +44,7 @@
 (global-font-lock-mode t) ; turn on colors
 
 ; use marmalade for emacs24
+(setq has-packages nil)
 (when (require 'package nil 'noerror)
   (if 'noerror
     (progn

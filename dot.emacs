@@ -16,6 +16,7 @@
 ; disable stuff
 (setq inhibit-splash-screen t) ; the splash-screen splits x11 mode
 (setq inhibit-startup-message t) ; welcome screen
+(setq vc-follow-symlinks t) ; Don't ask me about symlinks in version controlled files
 (put 'upcase-region 'disabled nil) ; I never mean to use this function anyway
 
 ; Perform setup for x11 and console
@@ -30,9 +31,24 @@
 (transient-mark-mode t) ;show region currently marked
 
 (global-font-lock-mode t) ; turn on colors
-(require 'color-theme) ; set color theme
-(require 'color-theme-twilight)
-(color-theme-twilight)
+
+; use marmalade for emacs24
+(when (require 'package nil 'noerror)
+  (if 'noerror
+    (progn
+	(setq has-packages t)
+	(add-to-list 'package-archives
+		     '("marmalade" . "http://marmalade-repo.org/packages/"))
+	(package-initialize))))
+
+
+; emacs24 only
+(if has-packages (progn
+      (install-pkg '(color-theme color-theme-twilight))
+      (install-pkg 'clojure-mode)))
+
+;(require 'color-theme-twilight)
+;(color-theme-twilight)
 
 
 ; tab configuration

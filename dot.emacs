@@ -56,8 +56,9 @@
 
 ; emacs24 only
 (if has-packages (progn
-      (install-pkg '(color-theme color-theme-twilight))
-      (install-pkg 'clojure-mode)))
+      (install-pkg 'twilight-theme)
+      (require 'twilight-theme)
+      (install-pkg '(clojure-mode))))
 
 ;(require 'color-theme-twilight)
 ;(color-theme-twilight)

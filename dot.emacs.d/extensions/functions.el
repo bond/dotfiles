@@ -12,4 +12,4 @@
 (defun install-ifnot-installed (package)
   "Install a package or require it from marmalade"
   (unless (package-installed-p package)
-    (install-package package)))
+    (package-install package)))

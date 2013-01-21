@@ -58,7 +58,9 @@
 (if has-packages (progn
       (install-pkg 'twilight-theme)
       (require 'twilight-theme)
-      (install-pkg '(clojure-mode))))
+      (install-pkg '(clojure-mode))
+      (install-pkg '(puppet-mode))
+      (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
 
 ;(require 'color-theme-twilight)
 ;(color-theme-twilight)

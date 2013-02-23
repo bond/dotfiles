@@ -54,16 +54,31 @@
 	(package-initialize))))
 
 
-; emacs24 only
-(if has-packages (progn
+; Install packages (requires marmalade)
+(if has-packages 
+    (progn
+      ; theme
       (install-pkg 'twilight-theme)
       (require 'twilight-theme)
-      (install-pkg '(clojure-mode))
+
+      ; puppet
       (install-pkg '(puppet-mode))
       (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
 
-;(require 'color-theme-twilight)
-;(color-theme-twilight)
+      ; clojure
+      (install-pkg '(clojure-mode nrepl))
+      (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode) ;enable eldoc
+      (setq nrepl-popup-stacktraces nil)
+      (add-to-list 'same-window-buffer-names "*nrepl*") ; make C-c C-z switch to *nrepl* buffer
+
+      ; php
+      (install-pkg 'php-mode)
+      (autoload 'phpmode "php-mode" "Majore mode for editing PHP" t)
+      (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+      (add-hook 'php-mode-hook
+		'(lambda ()
+		   (outline-minor-mode 0)))))
+
 
 ; tab configuration
 (setq c-basic-offset 2)
@@ -130,16 +145,9 @@
 ;##
 ;#########################################
 
-; load PHP mode
-(autoload 'php-mode "php-mode" "Major mode for editing PHP" t)
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-; turn off outline in php-mode
-(add-hook 'php-mode-hook
-	  '(lambda ()
-	     (outline-minor-mode 0)))
 ; setup for drupal coding standards
 (require 'drupal-mode)
-(add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\)$" . drupal-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|\\|theme\\)$" . drupal-mode))
 
 ; load ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)

@@ -45,4 +45,6 @@ esac
 
 # Local overrides
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
+
+# source /Users/daniel/.rvm/scripts/rvm
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

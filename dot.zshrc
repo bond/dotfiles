@@ -20,7 +20,7 @@ export RPS1="[%l@%m]"
 export LC_ALL='en_GB.utf8'
 export EDITOR="emacs"
 
-export PATH="$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin/"
+export PATH="$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin/:$HOME/bin"
 
 # Aliases
 alias ll='ls -lA'
@@ -45,6 +45,3 @@ esac
 
 # Local overrides
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
-
-# source /Users/daniel/.rvm/scripts/rvm
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

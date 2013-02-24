@@ -206,6 +206,11 @@
   "Address used by `submit-color-theme'.")
 
 ;; Emacs / XEmacs compatibility and workaround layer
+(if (string-match "Emacs 24." emacs-version)
+    (progn
+      (setq default-frame-alist '())
+      (defun plist-to-alist (p) p)))
+
 
 (cond ((and (facep 'tool-bar)
 	    (not (facep 'toolbar)))

@@ -1,6 +1,6 @@
 LN_FLAGS = -sf
 
-symlinks = .zshrc .screenrc .emacs .gitconfig
+symlinks = .zshrc .screenrc .emacs .gitconfig .tmux.conf
 symdirs = .emacs.d
 all: install
 

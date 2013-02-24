@@ -16,12 +16,24 @@
 ; disable stuff
 (setq inhibit-splash-screen t) ; the splash-screen splits x11 mode
 (setq inhibit-startup-message t) ; welcome screen
+(setq vc-follow-symlinks t) ; Don't ask me about symlinks in version controlled files
 (put 'upcase-region 'disabled nil) ; I never mean to use this function anyway
+
+; I allways close emacs when I don't want it
+(defun ask-before-closing ()
+  "Close if user answers y"
+  (interactive)
+  (if (y-or-n-p (format "Are you sure you want to exit? "))
+      (if (< emacs-major-version 22)
+	  (save-buffers-kill-terminal)
+	(save-buffers-kill-emacs))
+    (message "Cancelled exit")))
 
 ; Perform setup for x11 and console
 (if (x11mode)
     (progn ; x11mode
-      (set-face-attribute 'default nil :font "Ubuntu Mono 13")
+      (global-set-key (kbd "C-x C-c") 'ask-before-closing)
+      (set-face-attribute 'default nil :font "Ubuntu Mono 15")
       (setq x-select-enable-clipboard t) ; as above
       (setq interprogram-paste-function 'x-cut-buffer-or-selection-value))
   (menu-bar-mode 0)); not x11mode
@@ -30,9 +42,42 @@
 (transient-mark-mode t) ;show region currently marked
 
 (global-font-lock-mode t) ; turn on colors
-(require 'color-theme) ; set color theme
-(require 'color-theme-twilight)
-(color-theme-twilight)
+
+; use marmalade for emacs24
+(setq has-packages nil)
+(when (require 'package nil 'noerror)
+  (if 'noerror
+    (progn
+	(setq has-packages t)
+	(add-to-list 'package-archives
+		     '("marmalade" . "http://marmalade-repo.org/packages/"))
+	(package-initialize))))
+
+
+; Install packages (requires marmalade)
+(if has-packages 
+    (progn
+      ; theme
+      (install-pkg 'twilight-theme)
+      (require 'twilight-theme)
+
+      ; puppet
+      (install-pkg '(puppet-mode))
+      (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
+
+      ; clojure
+      (install-pkg '(clojure-mode nrepl))
+      (add-hook 'nrepl-interaction-mode-hook 'nrepl-turn-on-eldoc-mode) ;enable eldoc
+      (setq nrepl-popup-stacktraces nil)
+      (add-to-list 'same-window-buffer-names "*nrepl*") ; make C-c C-z switch to *nrepl* buffer
+
+      ; php
+      (install-pkg 'php-mode)
+      (autoload 'phpmode "php-mode" "Majore mode for editing PHP" t)
+      (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+      (add-hook 'php-mode-hook
+		'(lambda ()
+		   (outline-minor-mode 0)))))
 
 
 ; tab configuration
@@ -47,6 +92,8 @@
 (global-set-key (kbd "C-d") 'delete-region)
 (global-set-key (kbd "M-2") 'goto-line)
 
+; enable disabled-stuff
+(put 'erase-buffer 'disabled nil)
 
 ;#########################################
 ;##
@@ -98,16 +145,9 @@
 ;##
 ;#########################################
 
-; load PHP mode
-(autoload 'php-mode "php-mode" "Major mode for editing PHP" t)
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
-; turn off outline in php-mode
-(add-hook 'php-mode-hook
-	  '(lambda ()
-	     (outline-minor-mode 0)))
 ; setup for drupal coding standards
 (require 'drupal-mode)
-(add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|install\\|theme\\)$" . drupal-mode))
+(add-to-list 'auto-mode-alist '("\\.\\(module\\|test\\|\\|theme\\)$" . drupal-mode))
 
 ; load ruby mode
 (autoload 'ruby-mode "ruby-mode" "Major mode for ruby" t)

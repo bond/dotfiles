@@ -18,6 +18,7 @@
 (setq inhibit-startup-message t) ; welcome screen
 (setq vc-follow-symlinks t) ; Don't ask me about symlinks in version controlled files
 (put 'upcase-region 'disabled nil) ; I never mean to use this function anyway
+(global-visual-line-mode t); I need linewrapping (in orgmode as well)
 
 ; I allways close emacs when I don't want it
 (defun ask-before-closing ()
@@ -33,10 +34,18 @@
 (if (x11mode)
     (progn ; x11mode
       (global-set-key (kbd "C-x C-c") 'ask-before-closing)
-      (set-face-attribute 'default nil :font "Ubuntu Mono 15")
-      (setq x-select-enable-clipboard t) ; as above
-      (setq interprogram-paste-function 'x-cut-buffer-or-selection-value))
+      (if (not (eq system-type 'darwin)) ; Emacs on MacOS doesn't x11-stuff
+      	  (progn
+		(set-face-attribute 'default nil :font "Ubuntu Mono 15")
+      		(setq x-select-enable-clipboard t) ; as above
+      		(setq interprogram-paste-function 'x-cut-buffer-or-selection-value))))
   (menu-bar-mode 0)); not x11mode
+
+; Make emacsforosx work with brackets and norwegian keyboard
+(if (eq system-type 'darwin)
+    (setq mac-option-modifier nil
+    	  mac-command-modifier 'meta)
+)
 
 ; Visual settings
 (transient-mark-mode t) ;show region currently marked

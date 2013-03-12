@@ -86,7 +86,7 @@
       (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
       (add-hook 'php-mode-hook
 		'(lambda ()
-		   (outline-minor-mode 0)))))
+		   (outline-minor-mode 0)))
 
 
 ; tab configuration

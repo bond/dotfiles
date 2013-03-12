@@ -24,6 +24,7 @@ case $(uname -s) in
      ;;
 
      *)
+     alias ls='ls --color=auto'
      unicode="utf8"
      norwegian="nb_NO"
      ;;
@@ -57,16 +58,6 @@ case $TERM in
   xterm*)
     precmd () {print -Pn "\e]0;%n@%m: %~\a"}
     ;;
-esac
-
-# OS Specific overrides
-case $(uname -s) in
-  Linux)
-    alias ls='ls --color=auto'
-    ;;
-  Darwin)
-    export LANG=en_GB.UTF-8
-    export LC_ALL=$LANG
 esac
 
 # Local overrides

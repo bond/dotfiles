@@ -33,6 +33,7 @@ esac
 # Locale
 # english language
 export LANG="en_US.$unicode"
+export LC_CTYPE="$norwegian.$unicode"
 # default sorting order
 export LC_COLLATE="C"
 # stuff I'm used to formatted in norwegian ways

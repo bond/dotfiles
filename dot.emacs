@@ -5,6 +5,8 @@
 (add-to-list 'load-path (concat emacshome "/modes"))
 (add-to-list 'load-path (concat emacshome "/themes"))
 (add-to-list 'load-path (concat emacshome "/extensions"))
+(add-to-list 'exec-path "/usr/local/bin")
+
 (load "functions")
 
 ;#########################################

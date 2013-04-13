@@ -47,7 +47,7 @@ export PS1="%n %B%~%b> "
 export RPS1="[%l@%m]"
 export EDITOR="emacs"
 
-export PATH="$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin/:$HOME/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin:$HOME/bin"
 
 # Aliases
 alias ll='ls -lA'

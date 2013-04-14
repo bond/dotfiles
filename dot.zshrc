@@ -29,7 +29,7 @@ case $(uname -s) in
      EDITOR="subl"
      unicode="UTF-8"
      norwegian="no_NO"
-     PATH="$PATH:/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl"
+     PATH="$PATH:/Applications/Sublime Text 2.app/Contents/SharedSupport/bin"
      ;;
 
      *)

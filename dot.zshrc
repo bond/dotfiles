@@ -13,14 +13,23 @@ HISTSIZE=1000
 SAVEHIST=1000
 bindkey -e
 
+# Env
+export PS1="%n %B%~%b> "
+export RPS1="[%l@%m]"
+export EDITOR="emacs"
+
 # BSD / Linux utf8 differencies (yes, it's annoying)
 case $(uname -s) in
      *BSD)
-     ;& # fallthrough
-
-     Darwin)
      unicode="UTF-8"
      norwegian="no_NO"
+     ;;
+
+     Darwin)
+     EDITOR="subl"
+     unicode="UTF-8"
+     norwegian="no_NO"
+     PATH="$PATH:/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl"
      ;;
 
      *)
@@ -41,11 +50,6 @@ export LC_COLLATE="C"
 export LC_NUMERIC="$norwegian.$unicode"
 export LC_TIME="$norwegian.$unicode"
 export LC_TELEPHONE="$norwegian.$unicode"
-
-# Env
-export PS1="%n %B%~%b> "
-export RPS1="[%l@%m]"
-export EDITOR="emacs"
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin:$HOME/bin"
 

@@ -16,7 +16,7 @@ bindkey -e
 # Env
 export PS1="%n %B%~%b> "
 export RPS1="[%l@%m]"
-export EDITOR="emacs"
+export EDITOR="subl -w"
 
 # BSD / Linux utf8 differencies (yes, it's annoying)
 case $(uname -s) in
@@ -26,10 +26,11 @@ case $(uname -s) in
      ;;
 
      Darwin)
-     EDITOR="subl"
+     EDITOR="subl -w"
      unicode="UTF-8"
      norwegian="no_NO"
      PATH="$PATH:/Applications/Sublime Text 2.app/Contents/SharedSupport/bin"
+     alias tftpstart='sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist'
      ;;
 
      *)

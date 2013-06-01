@@ -1,5 +1,7 @@
 [color]
 	ui = auto
 [user]
-	email = "daniel@bondconsult.no"
+	email = daniel.bond@me.com
 	name = "Daniel Bond"
+[push]
+	default = simple

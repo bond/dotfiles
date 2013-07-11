@@ -57,12 +57,11 @@
 ; use marmalade for emacs24
 (setq has-packages nil)
 (when (require 'package nil 'noerror)
-  (if 'noerror
-    (progn
-	(setq has-packages t)
-	(add-to-list 'package-archives
-		     '("marmalade" . "http://marmalade-repo.org/packages/"))
-	(package-initialize))))
+  (progn
+    (setq has-packages t)
+    (add-to-list 'package-archives
+    '("marmalade" . "http://marmalade-repo.org/packages/"))
+    (package-initialize)))
 
 
 ; Install packages (requires marmalade)
@@ -74,7 +73,7 @@
 
       ; puppet
       (install-pkg '(puppet-mode))
-      (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))))
+      (add-to-list 'auto-mode-alist '("\\.pp$" . puppet-mode))
 
       ; clojure
       (install-pkg '(clojure-mode nrepl))
@@ -88,7 +87,7 @@
       (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
       (add-hook 'php-mode-hook
 		'(lambda ()
-		   (outline-minor-mode 0)))
+		   (outline-minor-mode 0)))))
 
 
 ; tab configuration

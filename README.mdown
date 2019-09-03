@@ -1,3 +1,7 @@
+# Pre-requisites
+- Install tmux
+- Install tmux package manager (https://github.com/tmux-plugins/tpm)
+
 # Installing
 Run the following commands:
 

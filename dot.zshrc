@@ -1,22 +1,53 @@
+# Lets have a long history but avoid dups
+HISTSIZE=2000
+HISTFILE=~/.zsh_history
+SAVEHIST=2000
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+setopt hist_find_no_dups
+
 #
 # Binds
 bindkey "^[[A"  history-beginning-search-backward
 bindkey "^[[B"  history-beginning-search-forward
 
-zstyle ':completion:*' completer _expand _complete
-zstyle :compinstall filename "~/.zshrc"
+# completition
+autoload -Uz compinit promptinit
+autoload -U colors && colors
 
-autoload -Uz compinit
+zstyle ':completion:*' menu select _expand _complete
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+
+
 compinit
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+promptinit
+
+
+# emacs style keybindings
 bindkey -e
 
-# Env
-export PS1="%n %B%~%b> "
-export RPS1="[%l@%m]"
-export EDITOR="subl -w"
+# Prompt
+# Drop this into your .zshrc or .bashrc file:
+git_prompt() {
+    local branch="$(git symbolic-ref HEAD 2> /dev/null | cut -d'/' -f3-)"
+    local branch_truncated="${branch:0:30}"
+
+    if (( ${#branch} > ${#branch_truncated} )); then
+        branch="${branch_truncated}..."
+    fi
+
+    [ -n "${branch}" ] && echo " (${branch})"
+}
+
+# This is specific to zsh but you could call $(git_prompt) in your .bashrc PS1 too.
+setopt PROMPT_SUBST
+PROMPT='%B%{$fg[blue]%}%~%{$fg[yellow]%}$(git_prompt)%{$reset_color%} %(?.$.%{$fg[red]%}$)%b '
 
 # BSD / Linux utf8 differencies (yes, it's annoying)
 case $(uname -s) in
@@ -52,17 +83,17 @@ export LC_NUMERIC="$norwegian.$unicode"
 export LC_TIME="$norwegian.$unicode"
 export LC_TELEPHONE="$norwegian.$unicode"
 
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:/var/lib/gems/1.9.1/bin:$HOME/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:$HOME/bin"
 
 # Aliases
 alias ls='ls --color=always'
 alias ll='ls -lA'
 alias emacs='emacs -nw'
 
-# Terminal specific
+# Terminal specific - set terminal titles
 case $TERM in
   xterm*)
-    precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+    precmd () {print -Pn "\e]0;%m: %~\a"}
     ;;
 esac
 

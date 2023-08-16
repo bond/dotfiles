@@ -1,13 +1,13 @@
-# Pre-requisites
+# Pre-requisites (if using tmux)
 - Install tmux
 - Install tmux package manager (https://github.com/tmux-plugins/tpm)
 
 # Installing
 Run the following commands:
 
-    git clone git://github.com/bond/dotfiles.git
+    git clone https://github.com/bond/dotfiles.git
     cd dotfiles
     make install
 
 
-By default files will be overwritten!
+By default existing files will be overwritten!

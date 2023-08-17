@@ -88,6 +88,7 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:$HOME/bin"
 # Aliases
 alias ls='ls --color=always'
 alias ll='ls -lA'
+alias k='kubectl'
 alias emacs='emacs -nw'
 
 # Terminal specific - set terminal titles
@@ -99,3 +100,6 @@ esac
 
 # Local overrides
 [ -f ~/.zshrc.local ] && . ~/.zshrc.local
+
+# rbenv
+[ -f ~/.rbenv/bin/rbenv ] && eval "$(~/.rbenv/bin/rbenv init - zsh)"

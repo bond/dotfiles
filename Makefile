@@ -1,7 +1,7 @@
 LN_FLAGS = -sf
 
 symlinks = .zshrc .gitconfig .tmux.conf
-#symdirs = .emacs.d
+symdirs = .zsh
 all: install
 
 
@@ -9,9 +9,9 @@ all: install
 $(symlinks):
 	@ln $(LN_FLAGS) $(PWD)/dot$@ ~/$@
 
-#$(symdirs):
-#	@rm -f ~/$@
-#	@ln $(LN_FLAGS) $(PWD)/dot$@/ ~/$@
+$(symdirs):
+	@rm -f ~/$@
+	@ln $(LN_FLAGS) $(PWD)/dot$@/ ~/$@
 
 install: $(symlinks) $(symdirs)
 	@echo

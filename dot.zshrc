@@ -24,6 +24,9 @@ zstyle ':completion:*' menu select _expand _complete
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 
+fpath=(~/.zsh/comp $fpath)
+# community completitions
+# https://github.com/zsh-users/zsh-completions/tree/master
 
 compinit
 promptinit

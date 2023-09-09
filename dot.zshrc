@@ -60,11 +60,8 @@ case $(uname -s) in
      ;;
 
      Darwin)
-     EDITOR="subl -w"
      unicode="UTF-8"
      norwegian="no_NO"
-     PATH="$PATH:/Applications/Sublime Text 2.app/Contents/SharedSupport/bin"
-     alias tftpstart='sudo launchctl load -F /System/Library/LaunchDaemons/tftp.plist'
      ;;
 
      *)

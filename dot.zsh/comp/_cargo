@@ -1,6 +1,4 @@
-error: Found argument 'zsh' which wasn't expected, or isn't valid in this context
-
-USAGE:
-    rustup [OPTIONS] [+toolchain] <SUBCOMMAND>
-
-For more information try --help
+#compdef cargo
+if command -v rustc >/dev/null 2>&1; then
+	source "$(rustc --print sysroot)"/share/zsh/site-functions/_cargo
+fi

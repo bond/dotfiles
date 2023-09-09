@@ -16,5 +16,5 @@ By default existing files will be overwritten!
 ## Rust completitions
 Rust completition are sourced from commands:
 
-    rustup completitions zsh > dot.zsh/comp/_rustup
-    rustup completitions zsh cargo > dot.zsh/comp/_cargo
+    rustup completions zsh > dot.zsh/comp/_rustup
+    rustup completions zsh cargo > dot.zsh/comp/_cargo

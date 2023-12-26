@@ -74,6 +74,7 @@ esac
 
 # Locale
 # english language
+#  - setup norwegian (ubuntu/debian: sudo locale-gen nb_NO.UTF-8)
 export LANG="en_US.$unicode"
 export LC_CTYPE="$norwegian.$unicode"
 # default sorting order
@@ -82,6 +83,10 @@ export LC_COLLATE="C"
 export LC_NUMERIC="$norwegian.$unicode"
 export LC_TIME="$norwegian.$unicode"
 export LC_TELEPHONE="$norwegian.$unicode"
+
+# Useful env-variables (IN EXAMPLE for docker-compose)
+export MY_UID=$(id -u)
+export MY_GID=$(id -g)
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:$HOME/bin"
 

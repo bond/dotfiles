@@ -23,6 +23,7 @@ autoload -U colors && colors
 zstyle ':completion:*' menu select _expand _complete
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' special-dirs true
 
 fpath=(~/.zsh/comp $fpath)
 # community completitions

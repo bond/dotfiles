@@ -95,7 +95,11 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:$HOME/bin"
 alias ls='ls --color=always'
 alias ll='ls -lA'
 alias k='kubectl'
-alias emacs='emacs -nw'
+
+# Git shortcuts
+alias gd="git diff"
+alias gc="git commit"
+alias gp="git push"
 
 # Terminal specific - set terminal titles
 case $TERM in

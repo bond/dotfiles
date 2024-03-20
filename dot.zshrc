@@ -17,41 +17,31 @@ bindkey "^[[A"  history-beginning-search-backward
 bindkey "^[[B"  history-beginning-search-forward
 
 # completition
-autoload -Uz compinit promptinit
-autoload -U colors && colors
+autoload -Uz compinit promptinit vcs_info
 
 zstyle ':completion:*' menu select _expand _complete
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion:*' special-dirs true
 
-fpath=(~/.zsh/comp $fpath)
 # community completitions
 # https://github.com/zsh-users/zsh-completions/tree/master
+fpath=(~/.zsh/comp $fpath)
 
 compinit
 promptinit
 
-
 # emacs style keybindings
 bindkey -e
 
-# Prompt
-# Drop this into your .zshrc or .bashrc file:
-git_prompt() {
-    local branch="$(git symbolic-ref HEAD 2> /dev/null | cut -d'/' -f3-)"
-    local branch_truncated="${branch:0:30}"
-
-    if (( ${#branch} > ${#branch_truncated} )); then
-        branch="${branch_truncated}..."
-    fi
-
-    [ -n "${branch}" ] && echo " (${branch})"
-}
+# Git prompt
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+zstyle ':vcs_info:git:*' formats ' %b'
 
 # This is specific to zsh but you could call $(git_prompt) in your .bashrc PS1 too.
 setopt PROMPT_SUBST
-PROMPT='%B%{$fg[blue]%}%~%{$fg[yellow]%}$(git_prompt)%{$reset_color%} %(?.$.%{$fg[red]%}$)%b '
+PROMPT='%B%F{blue}%~%F{yellow}${vcs_info_msg_0_}%f %(?.$.%F{red}$)%b '
 
 # BSD / Linux utf8 differencies (yes, it's annoying)
 case $(uname -s) in
@@ -94,7 +84,6 @@ export PATH="/usr/local/bin:/usr/local/sbin:$PATH:/opt/local/bin:$HOME/bin"
 # Aliases
 alias ls='ls --color=always'
 alias ll='ls -lA'
-alias k='kubectl'
 
 # Git shortcuts
 alias gd="git diff"

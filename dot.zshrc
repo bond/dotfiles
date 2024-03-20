@@ -37,11 +37,12 @@ bindkey -e
 # Git prompt
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
-zstyle ':vcs_info:git:*' formats ' %b'
+zstyle ':vcs_info:git:*' formats ' • %b'
 
 # This is specific to zsh but you could call $(git_prompt) in your .bashrc PS1 too.
 setopt PROMPT_SUBST
-PROMPT='%B%F{blue}%~%F{yellow}${vcs_info_msg_0_}%f %(?.$.%F{red}$)%b '
+                                                   
+PROMPT='%B%F{blue}%~%F{yellow}${vcs_info_msg_0_}%f%(?.%F{green}.%F{red}) ➟ %b%f '
 
 # BSD / Linux utf8 differencies (yes, it's annoying)
 case $(uname -s) in

@@ -13,6 +13,11 @@
 	colorMoved = zebra
 [init]
 	defaultBranch = main
-
 [credential]
 	helper = store
+[sendemail]
+	smtpuser = danielbondno@gmail.com
+	smtpserver = smtp.googlemail.com
+	smtpencryption = tls
+	smtpserverport = 587
+

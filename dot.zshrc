@@ -103,3 +103,16 @@ esac
 
 # rbenv
 [ -f ~/.rbenv/bin/rbenv ] && eval "$(~/.rbenv/bin/rbenv init - zsh)"
+
+if [ -f /etc/arch-release ]; then
+	alias pacman-cleanup="sudo pacman -Rs $(pacman -Qtdq)"
+fi
+
+# use starship for prompt if available
+if [ -f /usr/bin/starship ]; then
+	eval "$(starship init zsh)"
+fi
+
+# default to installing GEMS in home directory (fixes bundler)
+#export GEM_HOME=$(ruby -e 'puts Gem.user_dir')
+#export PATH="${PATH}:$(ruby -e 'puts Gem.user_dir')/bin"
